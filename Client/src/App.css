@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,800;0,900;1,500;1,600;1,700&family=Rajdhani:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+*{
+  /* font-family: 'Public Sans', sans-serif; */
+  /* font-family: "Maven Pro", Sans-serif; */
+  font-family: 'Rajdhani', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
+  /* font-weight: 400; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #010e3194; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #010e31; 
+}
+
+.app-container-bnw{
+  width: 100%;
+  min-height: 100vh;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  /* background-color: brown; */
+  position: relative;
+}
