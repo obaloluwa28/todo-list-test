@@ -38,6 +38,8 @@ export const editTask = (taskId, updatedData) => async (dispatch) => {
   try {
     dispatch({ type: "taskEditRequest" });
 
+    console.log(updatedData);
+
     const { data } = await axios.put(
       `${NodeServer_API}/tasks/${taskId}`,
       updatedData,
@@ -49,9 +51,11 @@ export const editTask = (taskId, updatedData) => async (dispatch) => {
       }
     );
 
+    console.log(data);
+
     dispatch({
       type: "taskEditSuccess",
-      payload: data,
+      payload: data.data,
     });
 
     toast.success("Task updated successfully!");

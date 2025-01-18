@@ -7,7 +7,6 @@ const Task = sequelize.define(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
         len: [3, 255], // Title length should be between 3 and 255 characters
       },
@@ -15,7 +14,6 @@ const Task = sequelize.define(
     category: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
         len: [3, 255], // Title length should be between 3 and 255 characters
       },
@@ -26,6 +24,10 @@ const Task = sequelize.define(
       validate: {
         len: [5, 1000], // Description length should be between 5 and 1000 characters
       },
+    },
+    status: {
+      type: DataTypes.TINYINT,
+      allowNull: false,
     },
     dueDate: {
       type: DataTypes.DATE,

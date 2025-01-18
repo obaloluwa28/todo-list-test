@@ -33,9 +33,7 @@ const taskReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        tasks: state.tasks.map((task) =>
-          task.id === action.payload.id ? action.payload : task
-        ),
+        tasks: action.payload,
       };
 
     case "taskDeleteSuccess":

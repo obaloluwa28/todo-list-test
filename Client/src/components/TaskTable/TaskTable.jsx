@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { utsDateformatter } from "../../utils/utlsDateConverter";
+import { MdDeleteOutline } from "react-icons/md";
+import { MdOutlineEdit } from "react-icons/md";
 
 const TasksTable = ({
   editTaskId,
@@ -44,7 +46,7 @@ const TasksTable = ({
                       type="text"
                       value={editTaskInput}
                       onChange={(e) => setEditTaskInput(e.target.value)}
-                      className="px-2 py-1 border rounded-lg w-full"
+                      className="px-2 py-1 outline-none border rounded-lg w-full"
                     />
                   ) : (
                     task.title
@@ -57,7 +59,7 @@ const TasksTable = ({
                   {utsDateformatter(task.dueDate)}
                 </td>
                 <td className="px-4 py-2 border">
-                  {task.completed ? "Completed" : "Pending"}
+                  {task.status ? "Completed" : "Pending"}
                 </td>
                 <td className="px-4 py-2 border">
                   <div className="flex gap-2 justify-center">
@@ -73,14 +75,14 @@ const TasksTable = ({
                         onClick={() => handleEditTask(task.id, task.text)}
                         className="bg-yellow-500 text-white px-3 py-1 rounded-lg hover:bg-yellow-600"
                       >
-                        Edit
+                        <MdOutlineEdit size={20} />
                       </button>
                     )}
                     <button
                       onClick={() => handleDeleteTask(task.id)}
                       className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600"
                     >
-                      Delete
+                      <MdDeleteOutline size={20} />
                     </button>
                   </div>
                 </td>

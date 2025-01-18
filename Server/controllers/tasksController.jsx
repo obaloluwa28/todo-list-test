@@ -3,7 +3,7 @@ const Task = require("../models/tasks"); // Import the Task model
 // Create Task
 const createTask = async (req, res) => {
   try {
-    const { title, category, description, dueDate } = req.body;
+    const { title, category, description, dueDate, status } = req.body;
 
     // Check if task with the same title already exists
     const existingTask = await Task.findOne({ where: { title } });
@@ -18,6 +18,7 @@ const createTask = async (req, res) => {
       description,
       category,
       dueDate,
+      status: 0,
     });
 
     res.status(201).json(newTask);
@@ -31,7 +32,7 @@ const createTask = async (req, res) => {
 const editTask = async (req, res) => {
   try {
     const taskId = req.params.id;
-    const { title, description, dueDate } = req.body;
+    const { title, status } = req.body;
 
     const task = await Task.findByPk(taskId);
     if (!task) {
@@ -40,12 +41,15 @@ const editTask = async (req, res) => {
 
     // Update task details
     task.title = title || task.title;
-    task.description = description || task.description;
-    task.dueDate = dueDate || task.dueDate;
+    // task.description = description || task.description;
+    // task.dueDate = dueDate || task.dueDate;
+    // task.category = category || task.category;
+    task.status = status || task.status;
 
     await task.save();
+    const tasks = await Task.findAll();
 
-    res.status(200).json(task);
+    res.status(200).json({ data: tasks, message: "Edited Successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Failed to update task" });

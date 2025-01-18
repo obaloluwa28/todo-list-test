@@ -14,7 +14,7 @@ const App = () => {
       <Router>
         <div className="app-container-bnw">
           <Navbar />
-          <div className="appcontainer">
+          <div className="appcontainer min-h-screen">
             <Routes>
               <Route exact path="/" element={<Tasks />} />
               <Route exact path="/about" element={<About />} />{" "}

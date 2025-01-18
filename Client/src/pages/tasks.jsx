@@ -39,7 +39,7 @@ const Tasks = () => {
 
   // Save edited task
   const handleSaveTask = () => {
-    dispatch(editTask(editTaskId, { text: editTaskInput }));
+    dispatch(editTask(editTaskId, { title: editTaskInput }));
     setEditTaskId(null);
     setEditTaskInput("");
   };
