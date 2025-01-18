@@ -12,6 +12,14 @@ const Task = sequelize.define(
         len: [3, 255], // Title length should be between 3 and 255 characters
       },
     },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        len: [3, 255], // Title length should be between 3 and 255 characters
+      },
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: false,

@@ -72,15 +72,17 @@ export const deleteTask = (taskId) => async (dispatch) => {
   try {
     dispatch({ type: "taskDeleteRequest" });
 
-    await axios.delete(`${NodeServer_API}/tasks/${taskId}`, {
+    const { data } = await axios.delete(`${NodeServer_API}/tasks/${taskId}`, {
       headers: {
         Authorization: `Bearer ${Cookies.get("Token")}`,
       },
     });
 
+    console.log(data);
+
     dispatch({
       type: "taskDeleteSuccess",
-      payload: taskId,
+      payload: data.data,
     });
 
     toast.success("Task deleted successfully!");

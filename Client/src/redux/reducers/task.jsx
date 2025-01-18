@@ -6,30 +6,30 @@ const initialState = {
 
 const taskReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_TASKS_REQUEST":
-    case "CREATE_TASK_REQUEST":
-    case "EDIT_TASK_REQUEST":
-    case "DELETE_TASK_REQUEST":
+    case "taskFetchRequest":
+    case "taskCreateRequest":
+    case "taskEditRequest":
+    case "taskDeleteRequest":
       return {
         ...state,
         loading: true,
       };
 
-    case "FETCH_TASKS_SUCCESS":
+    case "taskFetchSuccess":
       return {
         ...state,
         loading: false,
         tasks: action.payload,
       };
 
-    case "CREATE_TASK_SUCCESS":
+    case "taskCreateSuccess":
       return {
         ...state,
         loading: false,
         tasks: [...state.tasks, action.payload],
       };
 
-    case "EDIT_TASK_SUCCESS":
+    case "taskEditSuccess":
       return {
         ...state,
         loading: false,
@@ -38,17 +38,17 @@ const taskReducer = (state = initialState, action) => {
         ),
       };
 
-    case "DELETE_TASK_SUCCESS":
+    case "taskDeleteSuccess":
       return {
         ...state,
         loading: false,
-        tasks: state.tasks.filter((task) => task.id !== action.payload),
+        tasks: action.payload,
       };
 
-    case "FETCH_TASKS_FAIL":
-    case "CREATE_TASK_FAIL":
-    case "EDIT_TASK_FAIL":
-    case "DELETE_TASK_FAIL":
+    case "taskFetchFail":
+    case "taskCreateFail":
+    case "taskEditFail":
+    case "taskDeleteFail":
       return {
         ...state,
         loading: false,

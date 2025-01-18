@@ -9,7 +9,7 @@ const Navbar = () => {
         <ul className="flex space-x-4">
           <li>
             <Link
-              to="/tasks"
+              to="/"
               className="text-gray-300 hover:text-white transition duration-200"
             >
               Tasks
