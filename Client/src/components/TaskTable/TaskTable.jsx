@@ -12,11 +12,12 @@ const TasksTable = ({
   onSaveTask,
   onDeleteTask,
 }) => {
-  console.log(editTaskData);
-
   const [localEditData, setLocalEditData] = useState(editTaskData);
 
-  console.log(localEditData);
+  // Sync localEditData with editTaskData when editTaskData changes
+  useEffect(() => {
+    setLocalEditData(editTaskData);
+  }, [editTaskData]);
 
   const statusOptions = [
     { value: 1, label: "Completed" },
@@ -56,7 +57,7 @@ const TasksTable = ({
                 {editTaskData.id === task.id ? (
                   <input
                     type="text"
-                    value={localEditData?.title}
+                    value={localEditData?.title || ""}
                     onChange={(e) =>
                       handleInputChange(task.id, "title", e.target.value)
                     }
@@ -71,7 +72,7 @@ const TasksTable = ({
                 {editTaskData.id === task.id ? (
                   <input
                     type="text"
-                    value={localEditData?.description}
+                    value={localEditData?.description || ""}
                     onChange={(e) =>
                       handleInputChange(task.id, "description", e.target.value)
                     }

@@ -10,9 +10,9 @@ import {
 } from "../redux/actions/task";
 
 const Tasks = () => {
-  const [taskInput, setTaskInput] = useState("");
-  const [editTaskId, setEditTaskId] = useState(null);
-  const [editTaskInput, setEditTaskInput] = useState("");
+  //   const [taskInput, setTaskInput] = useState("");
+  //   const [editTaskId, setEditTaskId] = useState(null);
+  //   const [editTaskInput, setEditTaskInput] = useState("");
   const [editTaskData, setEditTaskData] = useState({
     id: null,
     title: "",
@@ -31,7 +31,7 @@ const Tasks = () => {
   // Add a new task
   const handleAddTask = (props) => {
     dispatch(createTask(props));
-    setTaskInput("");
+    // setTaskInput("");
   };
 
   // Edit a task
@@ -60,16 +60,7 @@ const Tasks = () => {
       <h1 className="text-3xl font-bold mb-5">My To-Do Application</h1>
 
       {/* Task Form */}
-      <TaskForm
-        tasks={tasks}
-        editTaskId={editTaskId}
-        editTaskInput={editTaskInput}
-        setEditTaskInput={setEditTaskInput}
-        handleSaveTask={handleSaveTask}
-        handleEditTask={handleEditTask}
-        handleDeleteTask={handleDeleteTask}
-        handleAddTask={handleAddTask}
-      />
+      <TaskForm onAddTask={handleAddTask} />
 
       {/* Tasks Table */}
       <TasksTable
