@@ -13,9 +13,15 @@ const Tasks = () => {
   const [taskInput, setTaskInput] = useState("");
   const [editTaskId, setEditTaskId] = useState(null);
   const [editTaskInput, setEditTaskInput] = useState("");
+  const [editTaskData, setEditTaskData] = useState({
+    id: null,
+    title: "",
+    description: "",
+    status: "",
+  });
 
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks); // Replace with your state slice
+  const { tasks, loading, error } = useSelector((state) => state.tasks); // Replace with your state slice
 
   // Fetch tasks on component mount
   useEffect(() => {
@@ -24,24 +30,24 @@ const Tasks = () => {
 
   // Add a new task
   const handleAddTask = (props) => {
-    // if (taskInput.trim() === "") return;
-
-    console.log(props);
     dispatch(createTask(props));
     setTaskInput("");
   };
 
   // Edit a task
-  const handleEditTask = (id, text) => {
-    setEditTaskId(id);
-    setEditTaskInput(text);
+  const handleEditTask = (task) => {
+    setEditTaskData({
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      status: task.status,
+    });
   };
 
   // Save edited task
-  const handleSaveTask = () => {
-    dispatch(editTask(editTaskId, { title: editTaskInput }));
-    setEditTaskId(null);
-    setEditTaskInput("");
+  const handleSaveTask = (updatedTask) => {
+    dispatch(editTask(updatedTask.id, updatedTask));
+    setEditTaskData({ id: null, title: "", description: "", status: "" });
   };
 
   // Delete a task
@@ -52,8 +58,6 @@ const Tasks = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center gap-3 p-5">
       <h1 className="text-3xl font-bold mb-5">My To-Do Application</h1>
-
-      {/* Input Section */}
 
       {/* Task Form */}
       <TaskForm
@@ -70,12 +74,12 @@ const Tasks = () => {
       {/* Tasks Table */}
       <TasksTable
         tasks={tasks}
-        editTaskId={editTaskId}
-        editTaskInput={editTaskInput}
-        setEditTaskInput={setEditTaskInput}
-        handleSaveTask={handleSaveTask}
-        handleEditTask={handleEditTask}
-        handleDeleteTask={handleDeleteTask}
+        loading={loading}
+        error={error}
+        editTaskData={editTaskData}
+        onEditTask={handleEditTask}
+        onSaveTask={handleSaveTask}
+        onDeleteTask={handleDeleteTask}
       />
     </div>
   );

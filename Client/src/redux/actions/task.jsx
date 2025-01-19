@@ -38,7 +38,7 @@ export const editTask = (taskId, updatedData) => async (dispatch) => {
   try {
     dispatch({ type: "taskEditRequest" });
 
-    console.log(updatedData);
+    // console.log(updatedData);
 
     const { data } = await axios.put(
       `${NodeServer_API}/tasks/${taskId}`,

@@ -58,8 +58,8 @@ const TaskForm = ({
   ];
 
   const categoryOptions = category?.map((catg) => ({
-    value: catg.title,
-    label: catg.label,
+    value: catg.label,
+    label: catg.title,
   }));
 
   return (
@@ -107,7 +107,7 @@ const TaskForm = ({
                 type="date"
                 value={taskDueDate}
                 onChange={(e) => setTaskDueDate(e.target.value)}
-                className="px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300"
                 required
               />
             </>
