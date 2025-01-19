@@ -32,7 +32,9 @@ const createTask = async (req, res) => {
 const editTask = async (req, res) => {
   try {
     const taskId = req.params.id;
-    const { title, status } = req.body;
+    const { title, description, status } = req.body;
+
+    console.log(status);
 
     const task = await Task.findByPk(taskId);
     if (!task) {
@@ -41,10 +43,10 @@ const editTask = async (req, res) => {
 
     // Update task details
     task.title = title || task.title;
-    // task.description = description || task.description;
-    // task.dueDate = dueDate || task.dueDate;
-    // task.category = category || task.category;
-    task.status = status || task.status;
+    task.description = description || task.description;
+    task.dueDate = task.dueDate;
+    task.category = task.category;
+    task.status = status;
 
     await task.save();
     const tasks = await Task.findAll();

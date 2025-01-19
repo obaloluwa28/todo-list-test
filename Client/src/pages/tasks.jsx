@@ -22,6 +22,7 @@ const Tasks = () => {
 
   const dispatch = useDispatch();
   const { tasks, loading, error } = useSelector((state) => state.tasks); // Replace with your state slice
+  const { categories } = useSelector((state) => state.category);
 
   // Fetch tasks on component mount
   useEffect(() => {
@@ -60,7 +61,7 @@ const Tasks = () => {
       <h1 className="text-3xl font-bold mb-5">My To-Do Application</h1>
 
       {/* Task Form */}
-      <TaskForm onAddTask={handleAddTask} />
+      <TaskForm onAddTask={handleAddTask} categories={categories} />
 
       {/* Tasks Table */}
       <TasksTable

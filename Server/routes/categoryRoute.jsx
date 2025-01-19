@@ -7,12 +7,12 @@ const {
 } = require("../controllers/categoryController.jsx");
 
 // Create Category
-router.post("/category", createCategory);
+router.post("/", createCategory);
 
 // Delete Category
-router.delete("/category/:id", deleteCategory);
+router.delete("/:id", deleteCategory);
 
 // Fetch All Categories
-router.get("/category", fetchAllCategories);
+router.get("/", fetchAllCategories);
 
 module.exports = router;

@@ -38,8 +38,6 @@ export const editTask = (taskId, updatedData) => async (dispatch) => {
   try {
     dispatch({ type: "taskEditRequest" });
 
-    // console.log(updatedData);
-
     const { data } = await axios.put(
       `${NodeServer_API}/tasks/${taskId}`,
       updatedData,
@@ -50,8 +48,6 @@ export const editTask = (taskId, updatedData) => async (dispatch) => {
         },
       }
     );
-
-    console.log(data);
 
     dispatch({
       type: "taskEditSuccess",
@@ -81,8 +77,6 @@ export const deleteTask = (taskId) => async (dispatch) => {
         Authorization: `Bearer ${Cookies.get("Token")}`,
       },
     });
-
-    console.log(data);
 
     dispatch({
       type: "taskDeleteSuccess",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
 
-const TaskForm = ({ onAddTask }) => {
+const TaskForm = ({ onAddTask, categories }) => {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskCategory, setTaskCategory] = useState("");
@@ -29,11 +29,10 @@ const TaskForm = ({ onAddTask }) => {
     setTaskDueDate("");
   };
 
-  const categoryOptions = [
-    { value: "work", label: "Work" },
-    { value: "school", label: "School" },
-    { value: "personal", label: "Personal" },
-  ];
+  const categoryOptions = categories.map((catg) => ({
+    value: catg.name.toLowerCase(), // Convert name to lowercase for the value
+    label: catg.name, // Keep the original name as the label
+  }));
 
   return (
     <div className="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">

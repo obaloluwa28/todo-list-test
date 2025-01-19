@@ -17,6 +17,14 @@ const Navbar = () => {
           </li>
           <li>
             <Link
+              to="/categories"
+              className="text-gray-300 hover:text-white transition duration-200"
+            >
+              Categories
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/about"
               className="text-gray-300 hover:text-white transition duration-200"
             >

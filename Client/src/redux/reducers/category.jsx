@@ -27,9 +27,7 @@ const categoryReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        categories: state.categories.filter(
-          (category) => category.id !== action.payload // Remove deleted category
-        ),
+        categories: action.payload, // Remove deleted category
         successMessage: action.message,
       };
 

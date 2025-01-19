@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -7,8 +7,16 @@ import Tasks from "./pages/tasks";
 import About from "./pages/about";
 import Navbar from "./components/Layouts/Navbar/Navbar";
 import Footer from "./components/Layouts/Footer/footer";
+import CategoryManager from "./pages/category";
+import { useDispatch } from "react-redux";
+import { fetchAllCategories } from "./redux/actions/category";
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAllCategories());
+  }, []);
+
   return (
     <Suspense fallback="loading">
       <Router>
@@ -18,6 +26,7 @@ const App = () => {
             <Routes>
               <Route exact path="/" element={<Tasks />} />
               <Route exact path="/about" element={<About />} />{" "}
+              <Route exact path="/categories" element={<CategoryManager />} />{" "}
             </Routes>
           </div>
           <Footer />

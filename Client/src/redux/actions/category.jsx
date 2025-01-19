@@ -6,7 +6,8 @@ import { NodeServer_API } from "../../server";
 // Create Category
 export const createCategory = (formData) => async (dispatch) => {
   try {
-    dispatch({ type: "taskCreateRequest" });
+    dispatch({ type: "categoryCreateRequest" });
+    // console.log(formData);
 
     const { data } = await axios.post(`${NodeServer_API}/category`, formData, {
       headers: {
@@ -14,6 +15,8 @@ export const createCategory = (formData) => async (dispatch) => {
         Authorization: `Bearer ${Cookies.get("Token")}`,
       },
     });
+
+    // console.log(data);
 
     dispatch({
       type: "categoryCreateSuccess",
@@ -41,15 +44,18 @@ export const deleteCategory = (taskId) => async (dispatch) => {
   try {
     dispatch({ type: "categoryDeleteRequest" });
 
-    await axios.delete(`${NodeServer_API}/category/${taskId}`, {
-      headers: {
-        Authorization: `Bearer ${Cookies.get("Token")}`,
-      },
-    });
+    const { data } = await axios.delete(
+      `${NodeServer_API}/category/${taskId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("Token")}`,
+        },
+      }
+    );
 
     dispatch({
       type: "categoryDeleteSuccess",
-      payload: taskId,
+      payload: data.data,
     });
 
     toast.success("Category deleted successfully!");
